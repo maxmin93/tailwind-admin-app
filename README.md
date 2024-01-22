@@ -80,7 +80,7 @@ bun:sqlite 을 내장한 bun 런타임을 실행하기 위해 `--bun` 옵션을 
 
 ## 2. Tailwind 템플릿을 Svelte 프로젝트로 바꾸기
 
-<img src="/2024/01/07-admin-dashboard-mobile.png" alt="admin-dashboard-mobile" width="50%" />
+<img src="/static/images/07-admin-dashboard-mobile.png" alt="admin-dashboard-mobile" width="50%" />
 
 ### 작업 절차
 
