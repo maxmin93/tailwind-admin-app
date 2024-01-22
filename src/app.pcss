@@ -1,0 +1,268 @@
+/* fonts: Noto Color Emoji, Noto Sans KR, Noto Serif KR */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: 100% 0 0;
+		--foreground: 27.81% 0.03 256.85;
+
+		--info: 45.2% 0.31 264;
+		--success: 51.98% 0.177 142;
+		--warning: 96.8% 0.21 109;
+		--error: 62.8% 0.257 29;
+
+		--muted: 95.9% 4.8% 240;
+		--muted-foreground: 240 3.8% 46.1%;
+
+		--popover: 100% 0 0;
+		--popover-foreground: 3.9% 10% 240;
+
+		--card: 100% 0 0;
+		--card-foreground: 3.9% 10% 240;
+
+		--border: 90% 5.9% 240;
+		--input: 90% 5.9% 240;
+
+		--primary: 49.12% 0.3096 275.75;
+		--primary-foreground: 100% 0 0;
+
+		--secondary: 69.71% 0.329 342.55;
+		--secondary-foreground: 98.71% 0.0106 342.55;
+
+		--accent: 95.9% 4.8% 240;
+		--accent-foreground: 10% 5.9% 240;
+
+		--destructive: 50.59% 72.22% 0;
+		--destructive-foreground: 98% 0% 0;
+
+		--ring: 64.9% 5% 240;
+
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 0% 0 0;
+		--foreground: 87.61% 0 0;
+
+		--neutral: 33.68% 0 0;
+		/*
+		--info: 45.2% 0.31 264;
+		--success: 51.98% 0.177 142;
+		--warning: 96.8% 0.21 109;
+		--error: 62.8% 0.257 29;
+		*/
+
+		--muted: 15.9% 3.7% 240;
+		--muted-foreground: 64.9% 5% 240;
+
+		--popover: 3.9% 10% 240;
+		--popover-foreground: 98% 0% 0;
+
+		--card: 3.9% 10% 240;
+		--card-foreground: 98% 0% 0;
+
+		--border: 15.9% 3.7% 240;
+		--input: 15.9% 3.7% 240;
+
+		--primary: 33.68% 0 0;
+		--primary-foreground: 87.61% 0 0;
+
+		--secondary: 33.68% 0 0;
+		--secondary-foreground: 87.61% 0 0;
+
+		--accent: 33.68% 0 0;
+		--accent-foreground: 87.61% 0 0;
+
+		--destructive: 30.6% 62.8% 0;
+		--destructive-foreground: 87.61% 0 0;
+
+		--ring: 15.9% 3.7% 240;
+	}
+}
+@layer base {
+	* {
+		@apply border-border;
+	}
+	html {
+		-webkit-text-size-adjust: 100%;
+		font-variation-settings: normal;
+	}
+	body {
+		@apply bg-background text-foreground;
+		font-feature-settings: 'liga';
+	}
+
+	/* Mobile tap highlight */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
+	html {
+		-webkit-tap-highlight-color: rgba(128, 128, 128, 0.5);
+	}
+
+	/* === Scrollbars === */
+	::-webkit-scrollbar {
+		@apply w-2;
+		@apply h-2;
+	}
+	::-webkit-scrollbar-track {
+		@apply !bg-muted;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply rounded-sm !bg-muted-foreground/30;
+	}
+
+	/* Firefox */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color\#browser_compatibility */
+	html {
+		scrollbar-color: oklch(46.9% 16.3% 215.4 / 0.3);
+	}
+	html.dark {
+		scrollbar-color: oklch(56.9% 16.3% 215.4 / 0.3);
+	}
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	.hide-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.antialised {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+@layer utilities {
+	.step {
+		counter-increment: step;
+	}
+	.step:before {
+		@apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
+		@apply ml-[-50px] mt-[-4px];
+		content: counter(step);
+	}
+}
+
+@media (max-width: 640px) {
+	.container {
+		@apply px-4;
+	}
+}
+
+.mdsvex code {
+	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
+}
+
+[data-theme='default'] {
+	display: flex;
+}
+
+[data-style='new-york'] [data-style='default'] {
+	display: none;
+}
+
+[data-style='default'] [data-style='default'] {
+	display: flex;
+	flex-direction: column;
+}
+
+[data-style='new-york'] [data-style='new-york'] {
+	display: flex;
+	flex-direction: column;
+}
+
+[data-style='default'] [data-style='new-york'] {
+	display: none;
+}
+
+[data-rehype-pretty-code-fragment] {
+	@apply relative;
+}
+
+[data-rehype-pretty-code-fragment] code {
+	@apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+	counter-reset: line;
+	box-decoration-break: clone;
+}
+
+[data-rehype-pretty-code-fragment] .line {
+	@apply inline-block min-h-[1rem] w-full px-4 py-0.5;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] .line {
+	@apply px-2;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+	@apply text-xs text-zinc-50/40;
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	width: 1.8rem;
+	margin-right: 1.4rem;
+	text-align: right;
+}
+
+[data-metadata] .pre-copy-btn {
+	@apply top-16 !important;
+}
+
+[data-rehype-pretty-code-fragment] .line--highlighted {
+	@apply bg-zinc-700/50;
+}
+
+[data-rehype-pretty-code-fragment] .with--meta {
+	@apply top-16 !important;
+}
+
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+	@apply relative;
+}
+
+[data-rehype-pretty-code-fragment] .word--highlighted {
+	@apply rounded-md border-zinc-700/70 bg-zinc-700/50 p-1;
+}
+
+.dark [data-rehype-pretty-code-fragment] .word--highlighted {
+	@apply bg-zinc-900;
+}
+
+[data-rehype-pretty-code-title] {
+	@apply mt-2 px-4 pt-6 text-sm font-medium;
+}
+
+[data-rehype-pretty-code-title] + pre {
+	@apply mt-2;
+}
+
+.super-debug {
+	@apply bg-zinc-950 text-[#FFF8] dark:bg-zinc-900 !important;
+}
+
+.super-debug--pre {
+	@apply !bg-transparent !text-[#FFF8];
+}
+
+.super-debug--code {
+	@apply !bg-transparent;
+}
+
+.super-debug--code .key {
+	@apply text-white !important;
+}
+
+.super-debug--code .undefined {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .string {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .number {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .boolean {
+	@apply !text-[#FFF8];
+}
